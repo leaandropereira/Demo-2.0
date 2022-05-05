@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>CEMItech 2022</title>
+  
+        <link rel="stylesheet" href="src/leaflet.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="src/leaflet-src.js"></script>
+        <script src="src/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="plugins/L.Control.Pan.css">
+        <script src="plugins/L.Control.Pan.js"></script>
+        <link rel="stylesheet" href="plugins/L.Control.Zoomslider.css">
+        <script src="plugins/L.Control.Zoomslider.js"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />        
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="plugins/easy-button.css">
+        <script src="plugins/easy-button.js"></script>
+        <link rel="stylesheet" href="plugins/L.Control.Sidebar.css">
+        <script src="plugins/L.Control.Sidebar.js"></script>
+        <script src="plugins/leaflet-providers.js"></script>
+        <link rel="stylesheet" href="plugins/Control.MiniMap.css">
+        <script src="plugins/Control.MiniMap.js"></script>
+        <script src="plugins/leaflet-search.js"></script>
+        <script src="plugins/leaflet.ajax.min.js"></script>
+        <link rel="stylesheet" href="plugins/full/Control.FullScreen.css"/>
+	    <script src="plugins/full/Control.FullScreen.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="src/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="src/jquery-ui.min.css"/>
+        <link rel="stylesheet" href="plugins/side/leaflet-sidebar.css">
+        <script src="plugins/side/leaflet-sidebar.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>        
+       <div id="top-panel" class="col-md-12">
+       <img id="img" src="img/logo.png">
+       <h2 id="title">Demonstração CEMItech</h2>
+       <h3 id="frase">Gestão do passado <br>conectada ao futuro</h3>
+        
+       </div>
+        <div id="sidebar" class="leaflet-sidebar collapsed">
+            <div class="leaflet-sidebar-tabs">
+                                <!-- top aligned tabs -->
+                     <ul role="tablist">
+                       <li><a href="#pesquisa" role="tab"><i class="fa fa-search active"></i></a></li>
+                        <li><a href="#filtrar" role="tab"><i class="fa fa-filter"></i></a></li>
+                        <li><a href="#legenda" role="tab"><i class="fa fa-navicon"></i></a></li>
+                        <li><a href="#tutorial" role="tab"><i class="fa fa-file-movie-o"></i></a></li>
+                    </ul>
+
+            </div>
+            <div class="leaflet-sidebar-content">
+                    <div class="leaflet-sidebar-pane" id="pesquisa">
+                     <div id ="divtumulo" class="col-xs-12">
+                            <div id="divtumulobyid" class="text-center col-xs-12">
+                                <h4>Pesquisa de Túmulos</h4>
+                            </div>
+                            <div id="divtumuloError" class="errorMsg col-xs-12 "></div>
+                            <div id="divfindtumuloid" class="form-group">
+                                <div class="col-xs-6">
+                                    <input type="text" id="txtfindtumulo" class="form-control" placeholder="Digite aqui!">
+                                </div>
+                                <div class="col-xs-6">
+                                    <button id="btnfindtumulo" class="btn btn-primary btn-block">Procurar</button>
+                                    <br>
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="" id="divtumulosdata"></div>
+                            <br>
+                    </div>
+            <button id="btnclear" class="btn btn-warning btn-block col-xs-6">Limpar Buscas</button>
+                    </div>
+                    <div class="leaflet-sidebar-pane" id="filtrar">
+                            <div id="divfiltertumulos" class="col-xs-12">
+                                    <h4 style="text-align:center"> Filtrar Túmulos</h4>
+                                       <div class="form-check form-switch">
+                                       <input class="form-check-input" type="checkbox" id="cadastrado" name="filtertumulos" value="3" checked>
+                                          <label class="form-check-label" for="cadastrado">Cadastrado</label>
+   
+                                </div>
+                               <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="filtertumulos" id="prefeitura"value="1" checked>
+                                         <label class="form-check-label" for="prefeitura">Prefeitura</label>
+                                         
+                             </div>       
+                                   
+                              <div class="form-check form-switch">
+                                   <input class="form-check-input" type="checkbox" name="filtertumulos" id="naocadastrado"value="0" checked>
+                                    <label class="form-check-label" for="naocadastrado">Não Cadastrado</label>
+                                         
+                             </div>    
+                                    <button id="btnfilter" class="btn btn-success">Filtrar</button>
+    
+                    
+                            </div>  
+                    </div>
+                    <div class="leaflet-sidebar-pane" id="legenda">
+                        LEGENDA 
+                    </div>
+                     <div class="leaflet-sidebar-pane" id="tutorial">
+                        TUTORIAL 
+                    </div>
+            </div>
+        </div>
+            <div id="mapdiv" class="col-md-12"></div>
+        <script src="mapa.js"></script>
+        <script src="functions.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </body>
+</html>
